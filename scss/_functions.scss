@@ -1,0 +1,45 @@
+@use "sass:math";
+
+
+@function calculation($num1, $num2, $type: ('m', 'o', 'dz', 'd')) {
+
+
+    @if $type =="m" {
+
+        $result: ($num1 * $num2)*1px;
+        @return $result;
+
+    }
+
+    @else if $type =="dz" {
+
+        $result: math.div($num1, $num2)*1px;
+        @return math.round($result);
+
+    }
+
+    @else if $type =="d" {
+
+        $result: ($num1 + $num2)*1px;
+        @return ($result);
+
+    }
+
+    @else if $type =="o" {
+
+        $result: ($num1 - $num2)*1px;
+        @return ($result);
+
+    }
+
+    @else {
+
+        @error 'Trzeci argument jest błędny!'
+
+    }
+
+}
+
+p {
+    width: calculation(200, 5, m);
+}
