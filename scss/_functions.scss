@@ -1,45 +1,57 @@
 @use "sass:math";
+@use "sass:meta";
+
+@function calcul($num1, $num2, $type: ('m', 'o', 'dz', 'd')) {
 
 
-@function calculation($num1, $num2, $type: ('m', 'o', 'dz', 'd')) {
+    // ZMIENNA DOTYCZĄCA TYPU ARGUMENTÓW
+    $x: meta.type-of($num1 and $num2);
 
-
-    @if $type =="m" {
-
-        $result: ($num1 * $num2)*1px;
-        @return $result;
-
+    // SPRAWDZENIE CZY $X JEST RÓŻNE OD 'NUMBER', JEŚLI TAK WYŚWIETL ERROR
+    @if $x !="number" {
+        @error 'Musisz podać liczby !'
     }
 
-    @else if $type =="dz" {
-
-        $result: math.div($num1, $num2)*1px;
-        @return math.round($result);
-
-    }
-
-    @else if $type =="d" {
-
-        $result: ($num1 + $num2)*1px;
-        @return ($result);
-
-    }
-
-    @else if $type =="o" {
-
-        $result: ($num1 - $num2)*1px;
-        @return ($result);
-
-    }
 
     @else {
 
-        @error 'Trzeci argument jest błędny!'
+        @if $type =="m" {
+
+            $result: ($num1 * $num2)*1px;
+            @return $result;
+
+        }
+
+        @else if $type =="dz" {
+
+            $result: math.div($num1, $num2)*1px;
+            @return math.round($result);
+
+        }
+
+        @else if $type =="d" {
+
+            $result: ($num1 + $num2)*1px;
+            @return ($result);
+
+        }
+
+        @else if $type =="o" {
+
+            $result: ($num1 - $num2)*1px;
+            @return ($result);
+
+        }
+
+        @else {
+
+            @error 'Trzeci argument jest błędny!'
+
+        }
 
     }
-
 }
 
 p {
-    width: calculation(200, 5, m);
+    font-size: calcul(5, 5, dz);
 }
