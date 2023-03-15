@@ -5,15 +5,15 @@
 
 
     // ZMIENNA DOTYCZĄCA TYPU ARGUMENTÓW
-    $x: meta.type-of($num1 and $num2);
+    $x: meta.type-of($num1 or $num2);
 
     // SPRAWDZENIE CZY $X JEST RÓŻNE OD 'NUMBER', JEŚLI TAK WYŚWIETL ERROR
-    @if $x !="number" {
-        @error 'Musisz podać liczby !'
+    @if $x != 'number' {
+        @error 'Musisz podać liczby !';
     }
 
 
-    @else {
+    @else  {
 
         @if $type =="m" {
 
@@ -53,5 +53,5 @@
 }
 
 p {
-    font-size: calcul(5, 5, dz);
+    font-size: calcul('5', 5, d);
 }
